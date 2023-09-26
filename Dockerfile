@@ -64,16 +64,13 @@ RUN yarn build
 # Copy dependencies and source code, then build
 COPY --from=deps /feature-reporter/node_modules ./deploy/tools/feature-reporter/node_modules
 RUN cd ./deploy/tools/feature-reporter && yarn compile_config
-RUN cd ./deploy/tools/feature-reporter &&  yarn build
+RUN cd ./deploy/tools/feature-reporter && yarn build
 
 
 ### ENV VARIABLES CHECKER
 # Copy dependencies and source code, then build 
-WORKDIR /envs-validator
-COPY --from=deps /envs-validator/node_modules ./node_modules
-COPY ./deploy/tools/envs-validator .
-COPY ./types/envs.ts .
-RUN yarn build
+COPY --from=deps /envs-validator/node_modules ./deploy/tools/envs-validator/node_modules
+RUN cd ./deploy/tools/envs-validator && yarn build
 
 
 # *****************************
@@ -81,7 +78,7 @@ RUN yarn build
 # *****************************
 # Production image, copy all the files and run next
 FROM node:18-alpine AS runner
-RUN apk add --no-cache --upgrade bash
+RUN apk add --no-cache --upgrade bash curl jq unzip
 
 ### APP
 WORKDIR /app
@@ -95,12 +92,23 @@ RUN adduser --system --uid 1001 nextjs
 COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /envs-validator/index.js ./envs-validator.js
+COPY --from=builder /app/deploy/tools/envs-validator/index.js ./envs-validator.js
 COPY --from=builder /app/deploy/tools/feature-reporter/index.js ./feature-reporter.js
 
-# Copy scripts and ENVs file
+# Copy scripts
+## Entripoint
 COPY --chmod=+x ./deploy/scripts/entrypoint.sh .
+## ENV replacer
 COPY --chmod=+x ./deploy/scripts/replace_envs.sh .
+## Assets downloader
+COPY --chmod=+x ./deploy/scripts/download_assets.sh .
+## Favicon generator
+COPY --chmod=+x ./deploy/scripts/favicon_generator.sh .
+COPY ./deploy/tools/favicon-generator ./deploy/tools/favicon-generator
+RUN ["chmod", "-R", "777", "./deploy/tools/favicon-generator"]
+RUN ["chmod", "-R", "777", "./public"]
+
+# Copy ENVs files
 COPY --from=builder /app/.env.production .
 COPY --from=builder /app/.env .
 
