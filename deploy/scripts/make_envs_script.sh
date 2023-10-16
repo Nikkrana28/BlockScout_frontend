@@ -3,7 +3,7 @@
 echo "🌀 Creating client script with ENV values..."
 
 # Define the output file name
-output_file="./public/envs.js"
+output_file="${1:-./public/envs.js}"
 
 touch $output_file;
 truncate -s 0 $output_file;
@@ -11,6 +11,7 @@ truncate -s 0 $output_file;
 # Check if the .env file exists and load ENVs from it
 if [ -f .env ]; then
     source .env
+    export $(cut -d= -f1 .env)
 fi
 
 echo "window.__envs = {" >> $output_file;

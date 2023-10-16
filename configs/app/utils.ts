@@ -1,18 +1,20 @@
 import isBrowser from 'lib/isBrowser';
 import * as regexp from 'lib/regexp';
 
+export const replaceQuotes = (value: string | undefined) => value?.replaceAll('\'', '"');
+
 export const getEnvValue = (envName: string) => {
   const envs = isBrowser() ? window.__envs : process.env;
 
   if (isBrowser() && envs.NEXT_PUBLIC_APP_INSTANCE === 'pw') {
     const storageValue = localStorage.getItem(envName);
 
-    if (storageValue) {
+    if (typeof storageValue === 'string') {
       return storageValue;
     }
   }
 
-  return envs[envName]?.replaceAll('\'', '"');
+  return replaceQuotes(envs[envName]);
 };
 
 export const parseEnvJson = <DataType>(env: string | undefined): DataType | null => {

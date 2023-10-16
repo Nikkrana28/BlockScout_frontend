@@ -35,6 +35,9 @@ The app instance could be customized by passing following variables to NodeJS en
   - [Blockchain statistics](ENVS.md#blockchain-statistics)
   - [Web3 wallet integration](ENVS.md#web3-wallet-integration-add-token-or-network-to-the-wallet) (add token or network to the wallet)
   - [Verified tokens info](ENVS.md#verified-tokens-info)
+  - [Bridged tokens](ENVS.md#bridged-tokens)
+  - [Safe{Core} address tags](ENVS.md#safecore-address-tags)
+  - [SUAVE chain](ENVS.md#suave-chain)
   - [Sentry error monitoring](ENVS.md#sentry-error-monitoring)
 - [3rd party services configuration](ENVS.md#external-services-configuration)
 
@@ -190,6 +193,7 @@ Settings for meta tags and OG tags
 | --- | --- | --- | --- | --- | --- |
 | NEXT_PUBLIC_NETWORK_EXPLORERS | `Array<NetworkExplorer>` where `NetworkExplorer` can have following [properties](#network-explorer-configuration-properties) | Used to build up links to transactions, blocks, addresses in other chain explorers. | - | - | `[{'title':'Anyblock','baseUrl':'https://explorer.anyblock.tools','paths':{'tx':'/ethereum/poa/core/tx'}}]` |
 | NEXT_PUBLIC_HIDE_INDEXING_ALERT | `boolean` | Set to `true` to hide indexing alert, if the chain indexing isn't completed | - | `false` | `true` |
+| NEXT_PUBLIC_MAINTENANCE_ALERT_MESSAGE | `string` | Used for displaying custom announcements or alerts in the header of the site. Could be a regular string or a HTML code. | - | - | `Hello world! 🤪` |
 
 #### Network explorer configuration properties
 
@@ -404,9 +408,49 @@ This feature is **enabled by default** with the `['metamask']` value. To switch 
 
 &nbsp;
 
+### Bridged tokens
+
+This feature allows users to view tokens that have been bridged from other EVM chains. Additional tab "Bridged" will be added to the tokens page and the link to original token will be displayed on the token page.
+
+| Variable | Type| Description | Compulsoriness  | Default value | Example value |
+| --- | --- | --- | --- | --- | --- |
+| NEXT_PUBLIC_BRIDGED_TOKENS_CHAINS | `Array<BridgedTokenChain>` where `BridgedTokenChain` can have following [properties](#bridged-token-chain-configuration-properties) | Used for displaying filter by the chain from which token where bridged. Also, used for creating links to original tokens in other explorers. | Required | - | `[{'id':'1','title':'Ethereum','short_title':'ETH','base_url':'https://eth.blockscout.com/token'}]` |
+| NEXT_PUBLIC_BRIDGED_TOKENS_BRIDGES | `Array<TokenBridge>` where `TokenBridge` can have following [properties](#token-bridge-configuration-properties) | Used for displaying text about bridges types on the tokens page. | Required | - | `[{'type':'omni','title':'OmniBridge','short_title':'OMNI'}]` |
+
+#### Bridged token chain configuration properties
+
+| Variable | Type| Description | Compulsoriness  | Default value | Example value |
+| --- | --- | --- | --- | --- | --- |
+| id | `string` | Base chain id, see [https://chainlist.org](https://chainlist.org) for the reference | Required | - | `1` |
+| title | `string` | Displayed name of the chain | Required | - | `Ethereum` |
+| short_title | `string` | Used for displaying chain name in the list view as tag | Required | - | `ETH` |
+| base_url | `string` | Base url to original token in base chain explorer | Required | - | `https://eth.blockscout.com/token` |
+
+*Note* The url to original token will be constructed as `<base_url>/<token_hash>`, e.g `https://eth.blockscout.com/token/<token_hash>`
+
+#### Token bridge configuration properties
+
+| Variable | Type| Description | Compulsoriness  | Default value | Example value |
+| --- | --- | --- | --- | --- | --- |
+| type | `string` | Bridge type; should be matched to `bridge_type` field in API response | Required | - | `omni` |
+| title | `string` | Bridge title | Required | - | `OmniBridge` |
+| short_title | `string` | Bridge short title for displaying in the tags | Required | - | `OMNI` |
+
+&nbsp;
+
 ### Safe{Core} address tags
 
 For the smart contract addresses which are [Safe{Core} accounts](https://safe.global/) public tag "Multisig: Safe" will be displayed in the address page header along side to Safe logo. The Safe service is available only for certain networks, see full list [here](https://docs.safe.global/safe-core-api/available-services). Based on provided value of `NEXT_PUBLIC_NETWORK_ID`, the feature will be enabled or disabled. 
+
+&nbsp;
+
+### SUAVE chain
+
+For blockchains that implementing SUAVE architecture additional fields will be shown on the transaction page ("Allowed peekers", "Computor"). Users also will be able to see the list of all transaction for a particular Computor in the separate view.
+
+| Variable | Type| Description | Compulsoriness  | Default value | Example value |
+| --- | --- | --- | --- | --- | --- |
+| NEXT_PUBLIC_IS_SUAVE_CHAIN | `boolean` | Set to true for blockchains with [SUAVE architecture](https://writings.flashbots.net/mevm-suave-centauri-and-beyond) | Required | - | `true` |
 
 &nbsp;
 
@@ -416,8 +460,8 @@ For the smart contract addresses which are [Safe{Core} accounts](https://safe.gl
 | --- | --- | --- | --- | --- | --- |
 | NEXT_PUBLIC_SENTRY_DSN | `string` | Client key for your Sentry.io app | Required | - | `<your-secret>` |
 | SENTRY_CSP_REPORT_URI | `string` | URL for sending CSP-reports to your Sentry.io app | - | - | `<your-secret>` |
-| NEXT_PUBLIC_APP_ENV | `string` | Current app env (e.g development, review or production). Passed as `environment` property to Sentry config | - | `process.env.NODE_ENV` | `production` |
-| NEXT_PUBLIC_APP_INSTANCE | `string` | Name of app instance. Used as custom tag `app_instance` value in the main Sentry scope | - | - | `wonderful_kepler` |
+| NEXT_PUBLIC_APP_ENV | `string` | App env (e.g development, review or production). Passed as `environment` property to Sentry config | - | `production` | `production` |
+| NEXT_PUBLIC_APP_INSTANCE | `string` | Name of app instance. Used as custom tag `app_instance` value in the main Sentry scope. If not provided, it will be constructed from `NEXT_PUBLIC_APP_HOST` | - | - | `wonderful_kepler` |
 
 &nbsp;
 
