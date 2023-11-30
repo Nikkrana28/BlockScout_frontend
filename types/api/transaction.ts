@@ -2,6 +2,8 @@ import type { AddressParam } from './addressParams';
 import type { BlockTransactionsResponse } from './block';
 import type { DecodedInput } from './decodedInput';
 import type { Fee } from './fee';
+import type { L2WithdrawalStatus } from './l2Withdrawals';
+import type { TokenInfo } from './token';
 import type { TokenTransfer } from './tokenTransfer';
 import type { TxAction } from './txAction';
 
@@ -51,11 +53,30 @@ export type Transaction = {
   l1_gas_price?: string;
   l1_gas_used?: string;
   has_error_in_internal_txs: boolean | null;
+  // optimism fields
+  op_withdrawal_status?: L2WithdrawalStatus;
+  op_l1_transaction_hash?: string;
   // SUAVE fields
   execution_node?: AddressParam | null;
   allowed_peekers?: Array<string>;
   wrapped?: Pick<Transaction, WrappedTransactionFields>;
+  // Stability fields
+  stability_fee?: {
+    dapp_address: AddressParam;
+    dapp_fee: string;
+    token: TokenInfo;
+    total_fee: string;
+    validator_address: AddressParam;
+    validator_fee: string;
+  };
+  // zkEvm fields
+  zkevm_verify_hash?: string;
+  zkevm_batch_number?: number;
+  zkevm_status?: typeof ZKEVM_L2_TX_STATUSES[number];
+  zkevm_sequence_hash?: string;
 }
+
+export const ZKEVM_L2_TX_STATUSES = [ 'Confirmed by Sequencer', 'L1 Confirmed' ];
 
 export type TransactionsResponse = TransactionsResponseValidated | TransactionsResponsePending;
 
