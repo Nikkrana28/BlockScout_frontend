@@ -122,20 +122,20 @@ const Footer = () => {
           <NetworkAddToWallet/>
         </Flex>
         <Box mt={{ base: 5, lg: '44px' }}>
-          <Link fontSize="xs" href="https://www.blockscout.com">blockscout.com</Link>
+          <Link fontSize="xs" href="https://www.maalchain.com/">maalchain.com</Link>
         </Box>
         <Text mt={ 3 } maxW={{ base: 'unset', lg: '470px' }} fontSize="xs">
-            Blockscout is a tool for inspecting and analyzing EVM based blockchains. Blockchain explorer for Ethereum Networks.
+        MAAL is the native coin built on layer 2 blockchain technology. MaalCoin has a massive utility driven ecosystem that currently comprises of 20+ unique projects, featuring an NFT , MetaVerse, Decentralized and centralized Exchange, Web 3.0 and smart staking solutions.
         </Text>
         <VStack spacing={ 1 } mt={ 6 } alignItems="start">
           { apiVersionUrl && (
             <Text fontSize="xs">
-                Backend: <Link href={ apiVersionUrl } target="_blank">{ backendVersionData?.backend_version }</Link>
+                {/* Backend: <Link href={ apiVersionUrl } target="_blank">{ backendVersionData?.backend_version }</Link> */}
             </Text>
           ) }
           { frontendLink && (
             <Text fontSize="xs">
-              Frontend: { frontendLink }
+              {/* Frontend: { frontendLink } */}
             </Text>
           ) }
         </VStack>
@@ -152,7 +152,7 @@ const Footer = () => {
         }
       >
         <Box>
-          { config.UI.footer.links && <Text fontWeight={ 500 } mb={ 3 }>Blockscout</Text> }
+          { config.UI.footer.links && <Text fontWeight={ 500 } mb={ 3 }></Text> }
           <Grid
             gap={ 1 }
             gridTemplateColumns={
@@ -172,7 +172,7 @@ const Footer = () => {
             gridAutoFlow={{ base: 'row', lg: config.UI.footer.links ? 'row' : 'column' }}
             mt={{ base: 0, lg: config.UI.footer.links ? 0 : '100px' }}
           >
-            { BLOCKSCOUT_LINKS.map(link => <FooterLinkItem { ...link } key={ link.text }/>) }
+            {/* { BLOCKSCOUT_LINKS.map(link => <FooterLinkItem { ...link } key={ link.text }/>) } */}
           </Grid>
         </Box>
         { config.UI.footer.links && isPending && (
