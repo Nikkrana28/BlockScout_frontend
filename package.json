@@ -14,7 +14,7 @@
     "build:docker": "sudo docker build --build-arg GIT_COMMIT_SHA=$(git rev-parse --short HEAD) --build-arg GIT_TAG=$(git describe --tags --abbrev=0) -t blockscout-frontend:local ./",
     "start": "next start",
     "start:docker:local": "docker run -p 3000:3000 --env-file .env.example blockscout-frontend:local",
-    "start:docker:maal": "docker run -p 3000:3000 --env-file .env.example nikkrana/blockscout-frontend:1.2",
+    "start:docker:maal": "sudo docker run -p 3000:3000 --env-file .env.example nikkrana/blockscout-frontend:1.2",
     "start:docker:preset": "./tools/scripts/docker.preset.sh",
     "lint:eslint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:eslint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
