@@ -75,7 +75,7 @@ const IndexingBlocksAlert = () => {
       <AlertIcon display={{ base: 'none', lg: 'flex' }}/>
       <AlertTitle>
         { `${ data.indexed_blocks_ratio && `${ Math.floor(Number(data.indexed_blocks_ratio) * 100) }% Blocks Indexed${ nbsp }${ ndash } ` }
-          We're indexing this chain right now. Some of the counts may be inaccurate.` }
+          We're indexing MaalChain Testnet right now and some data might be inaccurate. Wait for the indexing process to complete` }
       </AlertTitle>
     </Alert>
   );
