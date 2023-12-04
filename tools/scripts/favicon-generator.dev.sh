@@ -1,4 +1,4 @@
-secrets_file="./configs/envs/.env.secrets"
+secrets_file=".env.example"
 favicon_folder="./public/favicon/"
 master_url="https://res.cloudinary.com/dm4owxzlp/image/upload/v1701155470/uxd65fib8amj0fffuzic.png"
 
