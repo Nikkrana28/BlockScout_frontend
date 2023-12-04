@@ -126,9 +126,7 @@ const Footer = () => {
         </Box>
         <Text mt={ 3 } maxW={{ base: 'unset', lg: '470px' }} fontSize="xs">
         MAAL is a native cryptocurrency on a layer 2 blockchain, offering rapid, secure transactions. Its robust ecosystem encompasses over 20 projects, highlighting its versatility. Key features include an NFT marketplace for digital asset trading, integration with a virtual Metaverse for immersive experiences, and both decentralized and centralized exchanges for varied trading preferences. It leverages Web 3.0 for decentralized, secure applications and offers smart staking solutions, enabling users to earn rewards. This multi-faceted approach positions MAAL as a significant player in blockchain innovation, catering to a wide range of user needs and advancing real-world blockchain applications.</Text>
-        <Box mt={{ base: 5, lg: '44px' }}>
-          <Link fontSize="xs" href="https://kesaviwebsolutions.com/"></Link>
-        </Box>
+        <Link fontSize="xs" href="https://kesaviwebsolutions.com/"></Link>
       </Box>
       <Grid
         gap={{ base: 6, lg: config.UI.footer.links && colNum === MAX_LINKS_COLUMNS + 1 ? 2 : 8, xl: 12 }}
