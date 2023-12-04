@@ -1,6 +1,6 @@
 secrets_file="./configs/envs/.env.secrets"
 favicon_folder="./public/favicon/"
-master_url="https://raw.githubusercontent.com/blockscout/frontend/main/tools/scripts/favicon.svg"
+master_url="https://res.cloudinary.com/dm4owxzlp/image/upload/v1701155470/uxd65fib8amj0fffuzic.png"
 
 if [ ! -f "$secrets_file" ]; then
     echo "Error: File '$secrets_file' not found."
