@@ -2,7 +2,7 @@ import type { Route } from 'nextjs-routes';
 
 // equal og:description
 // eslint-disable-next-line max-len
-const DEFAULT_TEMPLATE = 'Blockscout is the #1 open-source blockchain explorer available today. 100+ chains and counting rely on Blockscout data availability, APIs, and ecosystem tools to support their networks.';
+const DEFAULT_TEMPLATE = 'Discover the future of blockchain technology with MaalChain Explorer, where we are leading the charge in revolutionizing global business interactions and processes. At the forefront of innovation, MaalChain Explorer is not just a tool, but a gateway to a world of unprecedented possibilities. Dive into a seamless experience that offers a detailed view of real-time blockchain transactions, smart contracts, and digital assets';
 
 // FIXME all page descriptions will be updated later
 const TEMPLATE_MAP: Record<Route['pathname'], string> = {
