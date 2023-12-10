@@ -54,7 +54,7 @@ const IntTxsIndexingStatus = () => {
     <Text fontSize="xs" color={ hintTextcolor }>
       { data.indexed_internal_transactions_ratio &&
         `${ Math.floor(Number(data.indexed_internal_transactions_ratio) * 100) }% Blocks With Internal Transactions Indexed${ nbsp }${ ndash } ` }
-      We{ apos }re indexing MaalChain Testnet right now and some data might be inaccurate. Wait for the indexing process to complete.
+      We{ apos }re indexing MaalChain right now and some data might be inaccurate. Wait for the indexing process to complete.
     </Text>
   );
 
