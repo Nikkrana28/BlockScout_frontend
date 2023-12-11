@@ -2,36 +2,36 @@
 
 exports[`generates correct metadata for: dynamic route 1`] = `
 {
-  "description": "View transaction 0x12345 on Blockscout (Blockscout) Explorer",
+  "description": "View transaction 0x12345 on Maalscan (Maalscan) Explorer",
   "opengraph": {
     "description": "",
     "imageUrl": "",
-    "title": "Blockscout transaction 0x12345 | Blockscout",
+    "title": "Maalscan transaction 0x12345 | Maalscan",
   },
-  "title": "Blockscout transaction 0x12345 | Blockscout",
+  "title": "Maalscan transaction 0x12345 | Maalscan",
 }
 `;
 
 exports[`generates correct metadata for: dynamic route with API data 1`] = `
 {
-  "description": "0x12345, balances and analytics on the Blockscout (Blockscout) Explorer",
+  "description": "0x12345, balances and analytics on the Maalscan (Maalscan) Explorer",
   "opengraph": {
     "description": "",
     "imageUrl": "",
-    "title": "Blockscout USDT token details | Blockscout",
+    "title": "Maalscan USDT token details | Maalscan",
   },
-  "title": "Blockscout USDT token details | Blockscout",
+  "title": "Maalscan USDT token details | Maalscan",
 }
 `;
 
 exports[`generates correct metadata for: static route 1`] = `
 {
-  "description": "Blockscout is the #1 open-source blockchain explorer available today. 100+ chains and counting rely on Blockscout data availability, APIs, and ecosystem tools to support their networks.",
+  "description": "Discover the future of blockchain technology with MaalChain Explorer, where we are leading the charge in revolutionizing global business interactions and processes. At the forefront of innovation, MaalChain Explorer is not just a tool, but a gateway to a world of unprecedented possibilities. Dive into a seamless experience that offers a detailed view of real-time blockchain transactions, smart contracts, and digital assets",
   "opengraph": {
     "description": "",
     "imageUrl": "http://localhost:3000/static/og_placeholder.png",
-    "title": "Blockscout blocks | Blockscout",
+    "title": "Maalscan blocks | Maalscan",
   },
-  "title": "Blockscout blocks | Blockscout",
+  "title": "Maalscan blocks | Maalscan",
 }
 `;
